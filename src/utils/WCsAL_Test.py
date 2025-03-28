@@ -20,7 +20,8 @@ def test_multitask_model(test_loader, model, params_init, TR_metrics, load = Tru
             
             print(MODEL_FILE)
             # model.load_state_dict(torch.load(MODEL_FILE))
-            model = torch.load(MODEL_FILE)
+            # model = torch.load(MODEL_FILE)
+            model = torch.load(MODEL_FILE, weights_only=False)
             print("Model loaded !")
         
         model = model.to(device)
