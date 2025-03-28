@@ -1,5 +1,7 @@
 
 from load_data import load_MultiMnist_data
+from src.utils.WCsAL_Train import full_training
+from src.utils.WCsAL_Test import test_multitask_model
 def train_and_test_model_MM(model, MultiMNISt_params):
 
     # Start timer

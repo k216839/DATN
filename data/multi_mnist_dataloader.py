@@ -21,7 +21,7 @@ class MNISTLoader(pl.LightningDataModule):
     def val_dataloader(self):
         return torch.utils.data.DataLoader(
             self.val_dataset,
-            batch_size = self.batch_size,
+            batch_size = 100,
             num_workers = 4,
             shuffle = False
         )
@@ -29,7 +29,7 @@ class MNISTLoader(pl.LightningDataModule):
     def test_dataloader(self):
         return torch.utils.data.DataLoader(
             self.test_dataset,
-            batch_size = self.batch_size,
+            batch_size = 100,
             num_workers = 4,
             shuffle = False
         )

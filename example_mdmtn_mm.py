@@ -1,10 +1,12 @@
 import torch
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
 from train_and_test_model_MM import train_and_test_model_MM
 from config import get_params
 
 k = [1e-2, 0.8, 0.19] # (k_0, k_1, k_2)
-main_dir = "logs/MDMTN_CM_logs"
-mod_logdir = "MDMTN_model_CM_onek"
+main_dir = "logs/MDMTN_MM_logs"
+mod_logdir = "MDMTN_model_MM_onek"
 archi_name = "MDMTN"
 data_name = "MultiMnist"
 num_model = 0
@@ -30,6 +32,6 @@ if __name__ == "__main__":
     import pickle
 
     ## Save the results lists to a file
-    with open(f'logs/MDMTN_CM_logs/Cifar10Mnist_results_k1_{k[0]}_k2_{k[1]}_k3_{k[2]}.pkl', 'wb') as f:
+    with open(f'logs/MDMTN_MM_logs/MultiMnist_results_k1_{k[0]}_k2_{k[1]}_k3_{k[2]}.pkl', 'wb') as f:
         pickle.dump(([Test_accuracy, prec_wrong_images], [TR_metrics, Best_iter], ALL_TRAIN_LOSS, ALL_VAL_ACCU,
                      ALL_ORIG_losses, MODEL_VAL_ACCU, BEST_val_accu), f)

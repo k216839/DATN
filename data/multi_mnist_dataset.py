@@ -27,12 +27,13 @@ class MNIST(torch.utils.data.Dataset):
     def __getitem__(self, index):
         img, target = self.X[index], self.y[index]
 
-        img = Image.fromarray(img.squeeze().astype(np.uint8), mode="L")
+        img = Image.fromarray(img.astype(np.uint8), mode="L")
 
         if self.transform is not None:
             img = self.transform(img)
-
-        return img, torch.from_numpy(target.copy()).to(torch.long)
+        labs_l = target[0]
+        labs_r = target[1]
+        return img, (torch.tensor(labs_l).to(torch.long), torch.tensor(labs_r).to(torch.long))
 
     def __len__(self):
         return len(self.X)
