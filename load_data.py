@@ -12,13 +12,13 @@ def load_MultiMnist_data():
     test_transform = torchvision.transforms.Compose([transforms.ToTensor(),
                                             transforms.Normalize((0.1307,), (0.3081,)),
                                            transforms.Resize((28, 28))])
-    data = MNISTLoader(batch_size=256,
+    data = MNISTLoader(batch_size=[256, 100],
                     train_transform=train_transform,
                     test_transform=test_transform,
                     file_path='MTL_dataset/multi_mnist.pickle')
     train_loader, val_loader, test_loader = data.train_dataloader(), data.val_dataloader(), data.test_dataloader()
     print("Data loaded!")
-
+    
     print("Show sample image...")
     # Get the first batch from the train loader
     images, targets = next(iter(train_loader))
@@ -38,12 +38,12 @@ def load_MultiMnist_data():
     # plt.tight_layout()
     # plt.show()
 
-    # img = images[0]
-    # plt.figure(figsize=(5, 5))
-    # plt.imshow(img, cmap='gray')
-    # plt.title(f"({targets[0][0].item()}, {targets[1][0].item()})")
-    # plt.axis('off')
-    # plt.show()
+    img = images[0]
+    plt.figure(figsize=(5, 5))
+    plt.imshow(img.squeeze(), cmap='gray')
+    plt.title(f"({targets[0][0].item()}, {targets[1][0].item()})")
+    plt.axis('off')
+    plt.show()
 
     return train_loader, val_loader, test_loader
 if __name__ == '__main__':
